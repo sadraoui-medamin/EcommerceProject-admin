@@ -3,11 +3,10 @@
 A compact admin dashboard for the MERN ecommerce app. This client-side app provides the interfaces site operators need to manage products, orders, customers, promotions, and analytics.
 
 Short tech overview
-- Framework: React (Vite or Create React App) — TypeScript recommended
-- State & data: Redux Toolkit or React Query (for server state)
-- Networking: Axios (or fetch) for REST / GraphQL calls
-- UI: Tailwind CSS, Material UI, or Chakra UI
-- Charts & reports: Chart.js, Recharts, or ApexCharts
+- Framework: React Vite
+- Networking: Axios for REST
+- UI: Tailwind CSS, Material UI
+- Charts : Chart.js
 - Auth: JWT / session tokens handled against backend admin routes
 - Testing: Jest + React Testing Library
 - Build & deploy: npm / yarn / pnpm; host build on Vercel, Netlify, or static hosting
@@ -21,7 +20,6 @@ Admin users & roles
 Core functionalities
 - Product management
   - Create / read / update / delete products and variants
-  - Inventory levels, SKU and barcode management
   - Category and tag management
   - Bulk import / export (CSV)
 - Order management
@@ -37,7 +35,6 @@ Core functionalities
   - Approve, edit, or remove product reviews and questions
 - Analytics & reporting
   - Sales dashboards, top products, revenue by date, conversion metrics
-  - Exportable reports (CSV/PDF)
 - Settings & integrations
   - Payment gateways (Stripe), tax rules, shipping carriers, email providers
   - Store metadata (logo, contact info, legal pages)
