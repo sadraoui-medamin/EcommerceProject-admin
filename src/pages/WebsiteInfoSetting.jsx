@@ -4,6 +4,7 @@ import { toast } from "react-toastify";
 import { FaTag } from "react-icons/fa";
 import { FaEnvelope, FaPhone, FaMapMarkerAlt } from "react-icons/fa";
 import { Divider } from 'antd';
+import apiBaseUrl from "../config/api";
 
 const WebsiteInfoPage = ({collapsed}) => {
   const [formData, setFormData] = useState({
@@ -17,7 +18,7 @@ const WebsiteInfoPage = ({collapsed}) => {
 
   const fetchInfo = async () =>{
     try {
-      const res = await axios.get('http://localhost:4000/api/aboutUs/getInfo') || {};
+      const res = await axios.get(`${apiBaseUrl}/api/aboutUs/getInfo`) || {};
       console.log(res)
       setFormData({
         siteName: res.data?.data?.siteName || "",
@@ -99,7 +100,7 @@ const WebsiteInfoPage = ({collapsed}) => {
         }
       }
       
-      await axios.post("http://localhost:4000/api/aboutUs/update", updateData);
+      await axios.post(`${apiBaseUrl}/api/aboutUs/update`, updateData);
       toast.success("Website info updated");
       fetchInfo(); //fetch data
     } catch {

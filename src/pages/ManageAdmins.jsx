@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { Button, Popconfirm, Input, Select, Tooltip, Table } from 'antd';
 import { PlusOutlined } from '@ant-design/icons';
 import axios from 'axios';
+import apiBaseUrl from "../config/api";
 import EditAdminModal from '../components/Admins/EditAdminModal';
 import CreateAdminModal from '../components/Admins/CreateAdminModal';
 import { MdWork } from 'react-icons/md';
@@ -69,7 +70,7 @@ const ManageAdmins = () => {
 
   const handleDeleteAdmin = async (id) => {
     try {
-      await axios.delete(`http://localhost:4000/api/admins/delete/${id}`);
+      await axios.delete(`${apiBaseUrl}/api/admins/delete/${id}`);
       toast.success("Deleted successfully!");
       fetchAdmins();
     } catch (err) {

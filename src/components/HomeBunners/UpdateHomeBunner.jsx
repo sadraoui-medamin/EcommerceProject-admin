@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
+import apiBaseUrl from "../../config/api";
 import { toast } from "react-toastify";
 import { Upload, message } from "antd";
 import { InboxOutlined, CloseOutlined } from "@ant-design/icons";
@@ -19,7 +20,7 @@ const UpdateHomeBunnerForm = ({ banner, fetchData, closeModal }) => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const res = await axios.get("http://localhost:4000/api/product/list");
+        const res = await axios.get(`${apiBaseUrl}/api/product/list`);
         setProducts(Array.isArray(res.data?.products) ? res.data.products : []);
       } catch (error) {
         console.error("Error fetching products:", error);
@@ -95,7 +96,7 @@ const UpdateHomeBunnerForm = ({ banner, fetchData, closeModal }) => {
     if (image) formData.append("image", image);
 
     try {
-      await axios.put("http://localhost:4000/api/homebunner/update", formData, {
+      await axios.put(`${apiBaseUrl}/api/homebunner/update`, formData, {
         headers: { "Content-Type": "multipart/form-data" },
       });
       toast.success("Banner updated successfully!");

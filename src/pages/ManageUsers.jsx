@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import apiBaseUrl from "../config/api";
 import { Table, Input, Button, Tag, Space, Select, Tooltip, Popconfirm } from "antd";
 import { IoIosCheckmarkCircleOutline, IoIosCloseCircleOutline } from "react-icons/io";
 import { LiaBanSolid } from "react-icons/lia";
@@ -24,7 +25,7 @@ const ManageUsers = () => {
 
   const getAllUsers = async () => {
     try {
-      const { data } = await axios.get("http://localhost:4000/api/user/getallusers");
+      const { data } = await axios.get(`${apiBaseUrl}/api/user/getallusers`);
       setUsers(data.users||[]);
     } catch (err) {
       console.error("Failed to fetch users:", err);

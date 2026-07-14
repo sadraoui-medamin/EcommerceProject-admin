@@ -4,6 +4,7 @@ import DetailsUpdate from './DetailsUpdate';
 import { FaPercentage, FaTag } from 'react-icons/fa';
 import { toast } from 'react-toastify';
 import axios from 'axios';
+import apiBaseUrl from '../../config/api';
 
 const UpdateProduct = ({ setCurrentProduct,currentProduct ,setIsEditModalOpen,fetchProducts}) => {
   
@@ -405,7 +406,7 @@ const UpdateProduct = ({ setCurrentProduct,currentProduct ,setIsEditModalOpen,fe
         }   
 
         // Send Update Request
-        await axios.put('http://localhost:4000/api/product/update', formData , {
+        await axios.put(`${apiBaseUrl}/api/product/update`, formData , {
             headers: {
                 'Content-Type': 'multipart/form-data',
             },

@@ -2,14 +2,12 @@ import React, { useState } from 'react';
 import { FaEnvelope, FaLock, FaEye, FaEyeSlash } from 'react-icons/fa';
 import axios from 'axios';
 import { toast } from 'react-toastify';
+import apiBaseUrl from "../config/api";
 
 const Login = ({ setToken,admin,setAdmin}) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
-  const Url = "http://localhost:4000";
-  
-
   const togglePasswordVisibility = () => {
     setShowPassword((prev) => !prev);
   };
@@ -18,7 +16,7 @@ const Login = ({ setToken,admin,setAdmin}) => {
     e.preventDefault();
     try {
       const response = await axios.post(
-          Url+'/api/admins/login',
+          `${apiBaseUrl}/api/admins/login`,
           { email, password }
       );
       

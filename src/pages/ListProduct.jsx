@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import UpdateProduct from "../components/LIST/UpdateProduct";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
+import apiBaseUrl from "../config/api";
 import { Table, Input, Select, Button, Popconfirm, Tooltip } from "antd";
 import { SearchOutlined } from "@ant-design/icons";
 import { FaEdit, FaTrash } from "react-icons/fa";
@@ -31,7 +32,7 @@ const ListProducts = () => {
   const navigate =useNavigate();
   const fetchProducts = async () => {
     try {
-      const { data } = await axios.get("http://localhost:4000/api/product/list");
+      const { data } = await axios.get(`${apiBaseUrl}/api/product/list`);
       if (data?.products) {
         setProducts(data.products);
       }
@@ -92,7 +93,7 @@ useEffect(() => {
 
   const handleDelete = async (_id) => {
     try {
-      await axios.delete("http://localhost:4000/api/product/remove", { data: { id: _id } });
+      await axios.delete(`${apiBaseUrl}/api/product/remove`, { data: { id: _id } });
       toast.success("Product deleted successfully.");
       fetchProducts();
     } catch (err) {

@@ -14,6 +14,7 @@ import ManageAdmins from "./pages/ManageAdmins";
 import ManageUsers from "./pages/ManageUsers";
 import WebsiteInfoSetting from "./pages/WebsiteInfoSetting";
 import axios from "axios";
+import apiBaseUrl from "./config/api";
 export default function App() {
   const [activeButton, setActiveButton] = useState('/'); 
   const [token, setToken] = useState(localStorage.getItem('token') ? localStorage.getItem('token') : "")
@@ -31,7 +32,7 @@ export default function App() {
 useEffect(() => {
   const fetchAdmin = async () => {
       try {
-        const response = await axios.get("http://localhost:4000/api/admins/getAdmin",{
+        const response = await axios.get(`${apiBaseUrl}/api/admins/getAdmin`,{
           headers: { token },
         });
         const adminInfo = {

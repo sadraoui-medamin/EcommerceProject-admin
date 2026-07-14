@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import apiBaseUrl from "../config/api";
 import { RiEditBoxLine, RiImageAddLine } from "react-icons/ri";
 import {  FaSearch, FaTrash } from "react-icons/fa";
 import { Popconfirm, Tooltip, Modal, Button } from "antd";
@@ -17,10 +18,10 @@ const HomeBanners = () => {
 
   const fetchData = async () => {
     try {
-      const bannerRes = await axios.get("http://localhost:4000/api/homebunner/list");
+      const bannerRes = await axios.get(`${apiBaseUrl}/api/homebunner/list`);
       const bannerData = bannerRes.data?.HomeBanners || [];
 
-      const productRes = await axios.get("http://localhost:4000/api/product/list");
+      const productRes = await axios.get(`${apiBaseUrl}/api/product/list`);
       const productData = productRes.data?.products || [];
 
       const enrichedBanners = bannerData.map((banner) => {
@@ -54,7 +55,7 @@ const HomeBanners = () => {
   // Delete a banner
   const handleDelete = async (id) => {
     try {
-      await axios.delete("http://localhost:4000/api/homebunner/delete", {
+      await axios.delete(`${apiBaseUrl}/api/homebunner/delete`, {
         data: { id },
       });
       fetchData();

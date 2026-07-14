@@ -4,6 +4,7 @@ import {toast } from "react-toastify"; // Import toast
 import { FaTag, FaInfoCircle, FaDollarSign, FaPercentage } from "react-icons/fa";
 import Details from "../components/ADD/ADDetails";
 import { useNavigate } from "react-router-dom";
+import apiBaseUrl from "../config/api";
 
 const AddProduct = () => {
   const navigate = useNavigate();
@@ -382,7 +383,7 @@ const AddProduct = () => {
 
 
     try {
-      await axios.post('http://localhost:4000/api/product/add', productData);
+      await axios.post(`${apiBaseUrl}/api/product/add`, productData);
       toast.success('Product added successfully!');
       setFormData({
         name: "",

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import apiBaseUrl from "../config/api";
 import { toast } from "react-toastify";
 import { Table, Input, Select, Spin } from "antd";
 import { FaCalendar, FaCalendarWeek, FaCheck, FaLocationDot, FaRegCalendar, FaTruck } from "react-icons/fa6";
@@ -31,7 +32,7 @@ const Orders = () => {
 
   const fetchAllOrders = async () => {
     try {
-      const res = await axios.get("http://localhost:4000/api/order/list");
+      const res = await axios.get(`${apiBaseUrl}/api/order/list`);
       if (res.data.success) {
         const reversedOrders = res.data.data.reverse(); // Reverse the array
         setOrders(reversedOrders);
@@ -113,7 +114,7 @@ const [selectedStatus, setSelectedStatus] = useState("Product Loading");
 
   const statusHandler = async (event, orderId) => {
     try {
-      const res = await axios.post("http://localhost:4000/api/order/status", {
+      const res = await axios.post(`${apiBaseUrl}/api/order/status`, {
         orderId,
         status: event.target.value,
       });

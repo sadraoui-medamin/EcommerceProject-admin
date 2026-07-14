@@ -26,6 +26,7 @@ import {
 import {  Select, Spin} from "antd";
 const { Option } = Select;
 import { useNavigate } from 'react-router-dom';
+import apiBaseUrl from "../config/api";
 
 const rangeOptions = [
   { label: "Today", value: "today" },
@@ -66,8 +67,6 @@ const Dashboard = ({setActiveButton}) => {
   const [areaChartStats, setAreaChartStats] = useState(null);
   const [tableStats, setTableStats] = useState(null);
   const [pieChartStats, setPieChartStats] = useState(null);
-  const Url = "http://localhost:4000";
-
   const navigate =useNavigate();
   // range of summary stats
   const [rangeSalesStats, setRangeSalesStats] = useState("month");
@@ -80,7 +79,7 @@ const Dashboard = ({setActiveButton}) => {
     useEffect(() => {
       const fetchsummaryCardStats = async () => {
         try {
-            const res = await axios.get(Url+"/api/dashboard/getSummaryCardStats", {
+            const res = await axios.get(`${apiBaseUrl}/api/dashboard/getSummaryCardStats`, {
               params: {
                 rangeSalesStats,
                 rangeOrderStats,
@@ -99,7 +98,7 @@ const Dashboard = ({setActiveButton}) => {
     //✅ 2.  fetch AreaChart Stats Section
     const fetchAreaChart= async () =>{
        try {
-        const data = await axios.get(Url+"/api/dashboard/getAreaChartStats") ;
+        const data = await axios.get(`${apiBaseUrl}/api/dashboard/getAreaChartStats`) ;
         setAreaChartStats(data.data || []);
         console.log("AreaChart" , areaChartStats );
        } catch (error) {
@@ -110,7 +109,7 @@ const Dashboard = ({setActiveButton}) => {
     //✅ 3.  fetch table Stats Section
     const fetchtableStats= async () =>{
        try {
-        const data = await axios.get(Url+"/api/dashboard/getTableStats") ;
+        const data = await axios.get(`${apiBaseUrl}/api/dashboard/getTableStats`) ;
         setTableStats(data.data);
        } catch (error) {
          console.error("Error fetching table data:", error);
@@ -120,7 +119,7 @@ const Dashboard = ({setActiveButton}) => {
     //✅ 4.  fetch PieChart Stats Section
     const fetchPieChartStats = async () =>{
       try {
-        const data = await axios.get(Url+"/api/dashboard/getPiechartStats") ;
+        const data = await axios.get(`${apiBaseUrl}/api/dashboard/getPiechartStats`) ;
         setPieChartStats(data.data);
       } catch (error) {
         console.error("Error fetching pie chart data:", error);
